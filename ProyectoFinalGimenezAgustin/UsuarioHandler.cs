@@ -5,6 +5,31 @@ namespace ProyectoCSharp
 {
     public class UsuarioHandler : DbHandler
     {
+        public List<Usuario> TraerUsuario()
+        {
+            List<Usuario> usuarioConDatos = new List<Usuario>();
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM Usuario WHERE Usuario=@NombreUsuario";
+
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        Usuario usuario = new Usuario();
+
+                        sqlCommand.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.VarChar) { Value = usuario.nombreUsuario});
+
+
+                    }
+                }
+            }
+
+        }
+        /*
         public List<Usuario> GetUsuario()
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -15,7 +40,7 @@ namespace ProyectoCSharp
 
                 /*
                 SqlParameter parametro = new SqlParameter("nombreUsuario", SqlDbType.VarChar) { Value = 1 };
-                */
+
 
                 using (SqlCommand sqlCommand = new SqlCommand(queryUpdate, sqlConnection))
                 {
@@ -51,13 +76,14 @@ namespace ProyectoCSharp
                             }
                         }
                     }
-                    */
+                    
                     sqlConnection.Close();
                 }
             }
 
             return usuarios;
         }
+        */
 
     }
 }
